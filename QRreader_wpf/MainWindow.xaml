@@ -1,0 +1,88 @@
+﻿<Window x:Class="QRreader_wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QRreader_wpf" 
+        Icon="favourite.ico" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"  AllowsTransparency="True" WindowStyle="None"   Background="Transparent"
+        MouseDown="Window_MouseDown" 
+        Title="二维码查看器" Height="230" Width="400">
+
+    <Window.Resources>
+        <Style x:Key="BtnMessCloseIcon" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentControl >
+                            <Image x:Name="backgroundImage" Source="img/close.png" Width="30" Height="30" />
+                        </ContentControl>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsPressed" Value="True">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX=".9" ScaleY=".9"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+                            </Trigger>
+                            <Trigger Property="Button.IsMouseOver" Value="True">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="BtnCut" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentControl >
+                            <Image x:Name="backgroundImage" Source="img/cut.png" Width="32" Height="32" />
+                        </ContentControl>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsPressed" Value="True">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX=".9" ScaleY=".9"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+                            </Trigger>
+                            <Trigger Property="Button.IsMouseOver" Value="True">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Border x:Name="bgpanel" CornerRadius="8,8,8,8" Background="#fff" Height="Auto"></Border>
+        <Button x:Name="close" Style="{StaticResource BtnMessCloseIcon}" Height="30" Width="30" Margin="351,10,19.39,190" Click="close_Click"     />
+        <Button x:Name="getbtn" Style="{StaticResource BtnCut}" Margin="34.114,10,332.076,186.19"   TabIndex="0" Click="getbtn_Click" />
+        <Image x:Name="showImg" Height="150" Width="150" Margin="11.067,56.485,238.932,23.514"  >
+            <Image.Clip>
+                <EllipseGeometry
+                  RadiusX="103"
+                  RadiusY="103"
+                  Center="75,75"/>
+            </Image.Clip>
+        </Image>
+        <TextBox x:Name="textbox" Height="150" Margin="166.068,56.485,10,23.514" IsReadOnly="True" TabIndex="1"  Background="Transparent" BorderBrush="#fff" TextWrapping="Wrap" />
+        <TextBlock Text="Power by yjl617@github.com nick123"  Margin="100.146,211.287,78.66,3.3" Foreground="#fff" />
+    </Grid>
+</Window>
